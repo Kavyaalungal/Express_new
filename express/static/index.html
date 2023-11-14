@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Data send using post method </h1>
+    <button onClick="postRequest()">click me</button>
+</body>
+<script>
+    function postRequest(){
+        fetch("http://localhost:3000/api/abcd",{
+            method:"post",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                data:"some data"
+            })
+        })
+        .then(res=>res.text())
+        .then(data=>alert(data))
+    }
+</script>
+</html>
