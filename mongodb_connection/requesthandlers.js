@@ -30,3 +30,30 @@ export async function getTodo(req,res){
     return res.status(500).send("error occured");
     }
 }
+
+
+export async function editTodo(req,res){
+    try {
+        let {id}=req.query;
+        let data=req.body;
+        let result=await todoSchema.updateOne({_id:id},data)
+         res.json(result)
+        
+    } catch (error) {
+      
+        console.log(error)
+        return res.status(500).send("error")
+        
+    }
+}
+export async function deleteTodo(req,res){
+    try {
+        let {id}=req.query;
+        let result=await todoSchema.deleteOne({_id:id})
+        res.json(result)
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send("error")
+    }
+}
