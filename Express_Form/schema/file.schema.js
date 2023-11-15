@@ -3,12 +3,9 @@ import mongoose from "mongoose";
     username:{
         type:String
     },
-    email:{
+    profile:{
         type:String
-    },
-    hobbies:{
-        type:Array
     }
  })
 
- export default mongoose.model.Users || mongoose.model("User",schema);
+ export default mongoose.model.Logins || mongoose.model("Login",schema);

@@ -1,4 +1,5 @@
 import userSchema from "./schema/user.schema.js";
+import fileSchema from "./schema/file.schema.js";
 
 export async function setData(req,res){
     try{
@@ -52,6 +53,37 @@ export async function deleteData(req,res){
         let {id}=req.query;
         let result=await userSchema.deleteOne({_id:id})
         res.json(result)
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send("error")
+    }
+}
+export async function uploadFile(req,res){
+    try {
+        let {username, profile}=req.body;
+        console.log(username,profile);
+        let result=await fileSchema.create({
+            username,
+            profile
+        });
+        if(result){
+            return res.json("file uploaded")
+        }
+        return res.status(400).send("file could not be uploaded")
+      
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send("error")
+    }
+}
+export async function getProfile(req,res){
+    try {
+       
+        let data=await fileSchema.find();
+        return res.json(data);
+        
         
     } catch (error) {
         console.log(error)
