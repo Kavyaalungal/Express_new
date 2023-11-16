@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img  alt="profile image" id="profile">
+    <p id="username"></p>
+    <script>
+        let username = document.getElementById("username");
+        let profile = document.getElementById("profile");
+
+        fetch("http://localhost:3000/api/get-profile")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            username.textContent = data[0].username;
+            profile.src = data[4].profile
+        })
+    </script>
+</body>
+</html>
