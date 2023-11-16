@@ -1,6 +1,6 @@
 import userSchema from "./schema/user.schema.js";
 import fileSchema from "./schema/file.schema.js";
-
+import  path  from "path";
 export async function setData(req,res){
     try{
     let {username, email, hobbies}=req.body;
@@ -75,8 +75,8 @@ console.log(req.files); // for multiple files
 export async function getProfile(req,res){
     try {
        
-        let data=await fileSchema.find();
-        return res.json(data);
+       let { file } = req.query;
+       return res.sendFile(path.resolve(`./files/${file}`))
         
         
     } catch (error) {
